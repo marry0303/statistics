@@ -1,0 +1,56 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Here your code !
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String n = br.readLine();
+        int N = Integer.parseInt(n); 
+        
+        double max=0;
+        double min=1000000000;
+        double line[] =new double[N]; 
+        double counts=0;
+        int i=0;
+        while(i<N){
+            String a= br.readLine();
+            double A = Double.parseDouble(a); 
+            line[i]=A;
+            
+            if(A>max){
+                max=A;
+            }
+            
+            if(A<min){
+                min=A;
+            }
+            i++;
+            counts+=A;
+        }
+        double range=(double)max-(double)min;
+        
+        double compcounts=0;
+        double comp =0;
+        double mean = counts/N;
+        int j=0;
+        while(j<N){
+        comp = (line[j]-mean)*(line[j]-mean);
+        compcounts+=comp;
+        j++;
+        }
+        double m=Double.parseDouble(n);
+        double fractions = 1/m;
+        double variance = fractions*compcounts;
+        double standarddeviation = Math.sqrt(variance);
+        String StandardDeviation = String.format("%1$.2f", standarddeviation);
+        String Mean = String.format("%1$.1f", mean);
+        String Variance = String.format("%1$.2f", variance);
+        
+        
+        System.out.println("平均値は"+Mean);
+        System.out.println("分散は"+Variance);
+        System.out.println("標準偏差は"+StandardDeviation);
+        System.out.println("レンジは"+range);
+    }
+}
